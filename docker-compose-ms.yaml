@@ -1,0 +1,116 @@
+# ortelius microservices
+services:
+  ms-dep-pkg-cud:
+    container_name: ms-dep-pkg-cud
+    image: quay.io/ortelius/ms-dep-pkg-cud:main-v10.0.1073-g6f0f81
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-dep-pkg-r:
+    container_name: ms-dep-pkg-r
+    image: quay.io/ortelius/ms-dep-pkg-r:main-v10.0.1070-g1c2aaa
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-textfile-crud:
+    container_name: ms-textfile-crud
+    image: quay.io/ortelius/ms-textfile-crud:main-v10.0.951-g8e8b42
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-compitem-crud:
+    container_name: ms-compitem-crud
+    image: quay.io/ortelius/ms-compitem-crud:main-v10.0.908-g51f7cb
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-validate-user:
+    container_name: ms-validate-user
+    image: quay.io/ortelius/ms-validate-user:main-v10.0.1030-g0d189f
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-sbom-export:
+    container_name: ms-sbom-export
+    image: quay.io/ortelius/ms-sbom-export:main-v10.0.439-gcab5db
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-scorecard:
+    container_name: ms-scorecard
+    image: quay.io/ortelius/ms-scorecard:main-v10.0.859-g60d68e
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-general:
+    container_name: ms-general
+    image: quay.io/ortelius/ms-general:main-v10.0.444-g1b7ba4
+    privileged: true
+    user: root
+    environment:
+      - DB_PASS=postgres
+      - DB_USER=postgres
+      - DB_NAME=postgres
+      - DB_HOST=localhost
+      - DB_PORT=5432
+    volumes:
+      - /tmp/postgres:/pgdata
+    networks:
+      - app-network
+
+  ms-nginx:
+    container_name: ms-nginx
+    image: quay.io/ortelius/ms-nginx:main-v10.0.444-g1b7ba4
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  ms-ui:
+    container_name: ms-ui
+    image: quay.io/ortelius/ms-ui:main-v10.0.444-g1b7ba4
+    privileged: true
+    user: root
+    networks:
+      - app-network
+
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    privileged: true
+    user: root
+    volumes:
+      - /tmp/jenkins_home:/var/jenkins_home
+    expose:
+      - 8081:8080
+    networks:
+      - app-network
+    depends_on:
+      - ms-dep-pkg-cud
+      - ms-dep-pkg-r
+      - ms-textfile-crud
+      - ms-compitem-crud
+      - ms-validate-user
+      - ms-sbom-export
+      - ms-scorecard
+      - ms-general
+      - ms-nginx
+      - ms-ui
+
+networks:
+  app-network:
+    driver: bridge
