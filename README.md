@@ -77,7 +77,7 @@ docker-compose down
 
 This will stop and remove the containers, but any data in `/tmp/jenkins_home` will be preserved.
 
-## Tips for Beginners
+## Tips
 
 Unlock Jenkins: The first time you access Jenkins, it will ask for an admin password. This password is stored in /tmp/jenkins_home/secrets/initialAdminPassword. You can find it by running:
 
