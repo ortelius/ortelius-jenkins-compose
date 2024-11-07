@@ -1,5 +1,24 @@
-# ortelius microservices
 services:
+# jenkins server
+  jenkins:
+    container_name: jenkins-server
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    volumes:
+      - /tmp/jenkins_home:/var/jenkins_home
+    ports:
+      - "8080:8080"   # Expose Jenkins UI on port 8080
+      - "50000:50000" # Jenkins agent communication
+    environment:
+      JENKINS_OPTS: "--httpPort=8080"
+
+volumes:
+  jenkins_home:
+    driver: local
+
+# ortelius microservices
+
 #   ms-dep-pkg-cud:
 #     container_name: ms-dep-pkg-cud
 #     image: quay.io/ortelius/ms-dep-pkg-cud:main-v10.0.1073-g6f0f81
@@ -87,19 +106,3 @@ services:
 #     user: root
 #     networks:
 #       - app-network
-
-  jenkins:
-    container_name: jenkins
-    image: jenkins/jenkins
-    privileged: true
-    user: root
-    volumes:
-      - /tmp/jenkins_home:/var/jenkins_home
-    expose:
-      - 8080:8080
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
