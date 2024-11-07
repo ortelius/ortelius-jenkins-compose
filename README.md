@@ -79,11 +79,13 @@ This will stop and remove the containers, but any data in `/tmp/jenkins_home` wi
 
 ## Tips for Beginners
 
-- **Unlock Jenkins**: The first time you access Jenkins, it will ask for an admin password. This password is stored in `/tmp/jenkins_home/secrets/initialAdminPassword`. You can find it by running:
+Unlock Jenkins: The first time you access Jenkins, it will ask for an admin password. This password is stored in /tmp/jenkins_home/secrets/initialAdminPassword. You can find it by running:
 
   ```bash
   docker exec jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword
   ```
+
+Alternatively, you can navigate to the mounted volume on your host machine **(/tmp/jenkins_home/secrets/initialAdminPassword)** to retrieve the password directly.
 
 - **Persisting Data**: Data is saved in `/tmp/jenkins_home`. If you remove this folder, Jenkins will lose all its data.
 - **Customizing Jenkins**: You can install plugins directly from the Jenkins UI to extend its functionality.
