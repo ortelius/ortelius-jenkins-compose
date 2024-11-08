@@ -48,6 +48,7 @@ volumes:
     - **ports**: Maps ports on your machine to the ports inside the Jenkins container.
       - `8080:8080`: Jenkins will be available at [http://localhost:8080](http://localhost:8080). You can customize the `8080` port to avoid conflicts with other services running on your machine by changing it to a different port number, for example, `9999:8080`.
       - `50000:50000`: Port for Jenkins agent communication.
+      - The port number to the left of `:` is the port representation on `YOUR` machine
     - **environment**: Sets environment variables for the container. `JENKINS_OPTS` is used to configure Jenkins, and here it is set to use port 8080.
 
 - **Volumes Section**: Manages Docker volumes to persist data. `jenkins_home` is defined here to store Jenkins data between container restarts.
