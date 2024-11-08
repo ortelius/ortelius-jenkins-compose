@@ -46,7 +46,7 @@ volumes:
     - **user**: Runs Jenkins as the `root` user, giving it permission to install plugins and dependencies.
     - **volumes**: Maps the local folder `/tmp/jenkins_home` to the Jenkins container folder `/var/jenkins_home`. This folder is where Jenkins stores its configuration and jobs.
     - **ports**: Maps ports on your machine to the ports inside the Jenkins container.
-      - `8888:8080`: Jenkins will be available at [http://localhost:8888](http://localhost:8888). You can customize the `8888` port to avoid conflicts with other services running on your machine by changing it to a different port number, for example, `9999:8080`.
+      - `8080:8080`: Jenkins will be available at [http://localhost:8080](http://localhost:8080). You can customize the `8080` port to avoid conflicts with other services running on your machine by changing it to a different port number, for example, `9999:8080`.
       - `50000:50000`: Port for Jenkins agent communication.
     - **environment**: Sets environment variables for the container. `JENKINS_OPTS` is used to configure Jenkins, and here it is set to use port 8080.
 
