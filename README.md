@@ -151,7 +151,6 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 2024-11-07 16:59:46.263+0000 [id=25]	INFO	hudson.lifecycle.Lifecycle#onReady: Jenkins is fully up and running
 ```
 
-
 ## Learn More
 
 For more information about Jenkins, visit the [Jenkins documentation](https://www.jenkins.io/doc/).
