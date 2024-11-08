@@ -25,7 +25,7 @@ services:
     volumes:
       - /tmp/jenkins_home:/var/jenkins_home
     ports:
-      - "8888:8080"   # Expose Jenkins UI on port 8080
+      - "8080:8080"   # Expose Jenkins UI on any port you wish
       - "50000:50000" # Jenkins agent communication
     environment:
       JENKINS_OPTS: "--httpPort=8080"
